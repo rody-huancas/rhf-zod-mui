@@ -1,16 +1,19 @@
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Schema, schema } from '../types/schema'
-import { FormProvider } from 'react-hook-form'
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, FormProvider } from "react-hook-form";
+import { defaultValues, Schema, schema } from "../types/schema";
 
-import Users from './Users'
+import Users from "./Users";
 
-export const UserProvider = () => {
-  const methods = useForm<Schema>({ mode: 'all', resolver: zodResolver(schema) })
+export const UserProvider: React.FC = () => {
+  const methods = useForm<Schema>({
+    mode: "all",
+    resolver: zodResolver(schema),
+    defaultValues
+  });
 
   return (
     <FormProvider {...methods}>
       <Users />
     </FormProvider>
-  )
-}
+  );
+};
